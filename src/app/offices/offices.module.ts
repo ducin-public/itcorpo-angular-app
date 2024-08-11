@@ -16,7 +16,6 @@ import { OfficeImageComponent } from './office-details/office-image';
   ],
   imports: [
     CommonModule,
-    OfficesRoutingModule,
     SharedModule,
   ],
   exports :[

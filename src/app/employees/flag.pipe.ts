@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { Employee } from 'src/app/api/dto';
-import { flag } from '../shared/contexts/nationality';
+import { flag } from '../shared/nationality/nationality';
 
 @Pipe({
   name: 'flag'

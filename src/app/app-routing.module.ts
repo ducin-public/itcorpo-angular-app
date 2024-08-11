@@ -4,15 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { LicenseComponent } from './license/license.component';
 import { HomeComponent } from './home/home.component';
 
-import { OfficeListingComponent } from './offices/office-listing/office-listing.component';
-import { ProjectListingComponent } from './projects/project-listing/project-listing.component';
-import { EmployeeListingComponent } from './employees/employee-listing/employee-listing.component';
-import { BenefitListingComponent } from './benefits/benefit-listing/benefit-listing.component';
-import { DashboardComponent } from './finances/dashboard/dashboard.component';
+import { OfficesRoutingModule } from './offices/offices-routing.module';
+import { EmployeesRoutingModule } from './employees/employees-routing.module';
+import { ProjectsRoutingModule } from './projects/projects-routing.module';
+import { FinancesRoutingModule } from './finances/finances-routing.module';
+import { BenefitsRoutingModule } from './benefits/benefits-routing.module';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
@@ -21,24 +21,29 @@ export const routes: Routes = [
   },
   {
     path: 'offices',
-    component: OfficeListingComponent
+    loadChildren: () => OfficesRoutingModule
   },
   {
     path: 'projects',
-    component: ProjectListingComponent
+    loadChildren: () => ProjectsRoutingModule
   },
   {
     path: 'employees',
-    component: EmployeeListingComponent
+    loadChildren: () => EmployeesRoutingModule
   },
   {
     path: 'benefits',
-    component: BenefitListingComponent
+    loadChildren: () => BenefitsRoutingModule
   },
   {
     path: 'finances',
-    component: DashboardComponent
+    loadChildren: () => FinancesRoutingModule
   },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  }
 ];
 
 @NgModule({

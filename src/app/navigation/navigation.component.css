@@ -1,0 +1,9 @@
+nav {
+  padding: 10px 0 10px 0;
+}
+
+nav .menu-link {
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+}

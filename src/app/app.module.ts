@@ -15,12 +15,14 @@ import { EmployeesModule } from './employees/employees.module';
 import { ProjectsModule } from './projects/projects.module';
 import { FinancesModule } from './finances/finances.module';
 import { BenefitsModule } from './benefits/benefits.module';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LicenseComponent,
     HomeComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
