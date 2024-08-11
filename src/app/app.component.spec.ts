@@ -1,25 +1,24 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SharedModule } from './shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         AppComponent,
-      ],
-      imports: [
-        // NullInjectorError: R3InjectorError(DynamicTestModule)[GeoService -> HttpClient -> HttpClient]: NullInjectorError: No provider for HttpClient!
-        HttpClientTestingModule,
+    ],
+    imports: [
         // Error: NG0304: 'router-outlet' is not a known element (used in the 'AppComponent' component template):        
         RouterTestingModule,
         // Error: NG0304: 'itcorpo-fadebox' [...] is not a known element (used in the 'AppComponent' component template):
-        SharedModule
-      ]
-    }).compileComponents();
+        SharedModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
 
   it('should create the app', () => {
