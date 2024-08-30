@@ -2,14 +2,14 @@
 
 <itcorpo-employee-image [employee]="employee"></itcorpo-employee-image>
 
-<div>
+<section>
   {{ employee.title }},
   earning {{ employee.salary | currency:"EUR" }},
   hired: {{ employee.hiredAt | date }}
 
-  <div>
+  <section>
     office: {{ employee.office.join(', ') }}
-  </div>
+  </section>
 
   <h3>Skills</h3>
   <ul>
@@ -17,4 +17,4 @@
   </ul>
 
   <a href="mailto:{{ employee.personalInfo.email }}"></a>
-</div>
+</section>

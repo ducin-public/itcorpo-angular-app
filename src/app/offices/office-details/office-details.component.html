@@ -1,9 +1,9 @@
 <strong>{{ office.city }}, {{ office.country }}</strong>
 
-<div>
+<section>
   address: {{ office.address }},
   owner: {{ office.estate.owner }}
   monthly rental: {{ office.estate.monthlyRental | currency:"EUR" }}
-</div>
+</section>
 
 <itcorpo-office-image [office]="office"></itcorpo-office-image>

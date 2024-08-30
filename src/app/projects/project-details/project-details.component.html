@@ -1,13 +1,13 @@
 <strong>{{ project.name }}</strong>
 
-<div>
+<section>
   since {{ project.startDate | date }},
   until {{ project.endDate | date }},
   team size {{ project.team.length }},
-</div>
-<div>
+</section>
+<section>
   <strong>budget</strong>: {{ project.budget | currency:"EUR" }}
-</div>
+</section>
 <p>
   {{ project.description }}
 </p>

@@ -9,7 +9,7 @@
 
 city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
 
-<div *ngIf="employees$ | async as employees">
+<section *ngIf="employees$ | async as employees">
   count: {{ employees.length }}
   <ul>
     <li *ngFor="let e of employees">
@@ -17,4 +17,4 @@ city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
       (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
     </li>
   </ul>
-</div>
+</section>

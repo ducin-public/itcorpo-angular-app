@@ -1,11 +1,11 @@
 <h2>Our projects</h2>
 
-<div *ngIf="projects$ | async as projects">
+<section *ngIf="projects$ | async as projects">
   count: {{ projects.length }}
   <ul>
     <li *ngFor="let p of projects">
       <itcorpo-project-details [project]="p"></itcorpo-project-details>
     </li>
   </ul>
-</div>
+</section>
 

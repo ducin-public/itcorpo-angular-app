@@ -1,10 +1,10 @@
 <h2>Our Offices</h2>
 
-<div *ngIf="offices$ | async as offices">
+<section *ngIf="offices$ | async as offices">
   count: {{ offices.length }}
   <ul>
     <li *ngFor="let o of offices">
       <itcorpo-office-details [office]="o"></itcorpo-office-details>
     </li>
   </ul>
-</div>
+</section>

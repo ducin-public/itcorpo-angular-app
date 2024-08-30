@@ -1,10 +1,10 @@
 <h2>Our benefits</h2>
 
-<div *ngIf="benefits$ | async as benefits">
+<section *ngIf="benefits$ | async as benefits">
   count: {{ benefits.length }}
   <ul>
     <li *ngFor="let b of benefits">
       <itcorpo-benefit-details [benefit]="b"></itcorpo-benefit-details>
     </li>
   </ul>
-</div>
+</section>
