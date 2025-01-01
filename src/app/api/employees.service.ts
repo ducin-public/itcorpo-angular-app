@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { apiURL } from './config';
 import { applyQueryString } from './queryString';
 
-import { Employee, Nationality } from 'src/app/api/dto';
+import { Employee, Nationality } from './data-contracts';
 
 export type EmployeeCriteria = {
   nationality?: Nationality
@@ -29,7 +29,7 @@ export class EmployeesService {
   }
 
   getPage(criteria: EmployeeCriteria = {}, page: number = 1, pageSize = 50) {
-    const query = applyQueryString({ ...criteria, 
+    const query = applyQueryString({ ...criteria,
       _limit: pageSize,
       _page: page
     })

@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'itcorpo-fadebox',
-  template: `<div class="fade-box" [ngClass]="{'fade-in': !currentlyFadeOut, 'fade-out': currentlyFadeOut}">
-  <ng-content></ng-content>
-</div>
-`,
-  styleUrls: ['./fadebox.component.css']
+  template: `
+    <div [ngClass]="[
+      'fixed z-50 w-80 right-12 bottom-12 p-4 rounded-lg border border-gray-300 bg-white shadow-lg transition-all duration-1000',
+      currentlyFadeOut ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'
+    ]">
+      <ng-content></ng-content>
+    </div>
+  `,
 })
-export class FadeboxComponent implements OnInit {
-
-  public fadeOutON = false
-  public currentlyFadeOut = true
-
-  constructor() {}
+export class FadeboxComponent implements OnInit, OnDestroy {
+  public currentlyFadeOut = true;
+  private intervalId: any;
 
   ngOnInit() {
-    if (this.fadeOutON){
-      setInterval(() => this.currentlyFadeOut = !this.currentlyFadeOut, 3000)
-    }
+    this.intervalId = setInterval(() => {
+      this.currentlyFadeOut = !this.currentlyFadeOut;
+    }, 3000);
   }
 
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
 }

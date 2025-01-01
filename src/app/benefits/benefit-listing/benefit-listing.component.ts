@@ -3,7 +3,7 @@ import { BenefitsService } from 'src/app/api/benefits.service';
 
 import { Observable } from 'rxjs';
 
-import { Benefit } from 'src/app/api/dto';
+import { Benefit } from 'src/app/api/data-contracts';
 
 @Component({
   selector: 'itcorpo-benefit-listing',

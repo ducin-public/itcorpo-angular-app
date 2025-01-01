@@ -1,5 +1,7 @@
 <h2>Our benefits</h2>
 
+<itcorpo-spinner *ngIf="!(benefits$ | async)"></itcorpo-spinner>
+
 <section *ngIf="benefits$ | async as benefits">
   count: {{ benefits.length }}
   <ul>

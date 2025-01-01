@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NEVER, Observable } from 'rxjs';
 
 import { EmployeesService } from '../api/employees.service';
-import { Employee } from 'src/app/api/dto';
+import { Employee } from 'src/app/api/data-contracts';
 
 @Injectable({
   providedIn: 'root'

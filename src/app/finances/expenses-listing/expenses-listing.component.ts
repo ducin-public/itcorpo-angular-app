@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Expense } from 'src/app/api/dto';
+import { Expense } from 'src/app/api/data-contracts';
 
 @Component({
   selector: 'itcorpo-expenses-listing',

@@ -1,4 +1,4 @@
-.fade-box {
+/* .fade-box {
   z-index: 1;
   position: fixed;
   width: 20em;
@@ -32,7 +32,7 @@
   animation-name: fadeOut;
   transition-timing-function: cubic-bezier(0, 0.32, 0.87,-0.72)
 }
-    
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -53,4 +53,4 @@
     opacity: 1;
     right: 50px;
   }
-}
+} */

@@ -9,7 +9,7 @@ import { ExpensesService } from 'src/app/api/expenses.service';
 
 import { Observable, of } from 'rxjs';
 
-import { Expense } from 'src/app/api/dto';
+import { Expense } from 'src/app/api/data-contracts';
 
 @Component({
   selector: 'itcorpo-dashboard',

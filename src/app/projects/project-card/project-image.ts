@@ -1,5 +1,5 @@
 
-import { Project } from 'src/app/api/dto';
+import { Project } from 'src/app/api/data-contracts';
 
 import { hashCode } from '../../utils/hash';
 

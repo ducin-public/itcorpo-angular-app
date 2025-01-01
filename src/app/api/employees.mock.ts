@@ -1,4 +1,4 @@
-import { Employee } from "./dto";
+import { Employee } from "./data-contracts";
 
 export const mockEmployees: Employee[] = [{
     id: 1,
@@ -11,7 +11,7 @@ export const mockEmployees: Employee[] = [{
     firstName: 'John',
     lastName: 'Doe',
     title: 'Software Engineer',
-    contractType: 'contract',
+    contractType: 'CONTRACT',
     email: 'john.doe@example.com',
     hiredAt: '2022-01-01',
     expiresAt: '2023-01-01',

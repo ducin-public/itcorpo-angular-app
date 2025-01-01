@@ -18,6 +18,8 @@ import { ProjectsModule } from "./projects/projects.module";
 import { FinancesModule } from "./finances/finances.module";
 import { BenefitsModule } from "./benefits/benefits.module";
 import { NavigationComponent } from "./navigation/navigation.component";
+import { NavItemComponent } from "./navigation/nav-item.component";
+import { LucideAngularModule, Plus, Eye, Edit, Users, DollarSign } from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { NavigationComponent } from "./navigation/navigation.component";
     LicenseComponent,
     HomeComponent,
     NavigationComponent,
+    NavItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { NavigationComponent } from "./navigation/navigation.component";
     ProjectsModule,
     FinancesModule,
     BenefitsModule,
+    LucideAngularModule.pick({ Plus, Eye, Edit, Users, DollarSign })
   ],
   bootstrap: [AppComponent],
   providers: [

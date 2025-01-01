@@ -3,11 +3,12 @@
 </itcorpo-sidebar>
 
 <span (click)="onToggleSidebar()" class="icon">📖</span>
-<!-- <itcorpo-round-button (clicked)="onToggleSidebar()"></itcorpo-round-button> -->
 
 <h2>Our Employees</h2>
 
 city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
+
+<itcorpo-spinner *ngIf="!(employees$ | async)"></itcorpo-spinner>
 
 <section *ngIf="employees$ | async as employees">
   count: {{ employees.length }}

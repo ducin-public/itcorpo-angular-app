@@ -3,12 +3,10 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { GeoService } from '../api/geo.service';
-import { Nationality } from '../api/dto';
 
 @Component({
   selector: 'itcorpo-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css'
+  templateUrl: './navigation.component.html'
 })
 export class NavigationComponent {
   geoData$!: Observable<{ [k: string]: string }>

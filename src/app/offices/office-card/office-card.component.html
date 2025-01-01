@@ -1,0 +1,48 @@
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+  <img
+    [src]="getImageURL(office)"
+    [alt]="office.city + ', ' + office.country"
+    class="w-full h-48 object-cover"
+  />
+
+  <div class="p-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">
+          {{office.city}}, {{office.country}}
+        </h3>
+        <p class="text-sm text-gray-600">{{office.address}}</p>
+      </div>
+      <div class="flex space-x-2">
+        <button (click)="view.emit()" class="text-gray-400 hover:text-indigo-600">
+          <i-lucide name="eye" class="h-5 w-5"></i-lucide>
+        </button>
+        <button (click)="edit.emit()" class="text-gray-400 hover:text-indigo-600">
+          <i-lucide name="edit" class="h-5 w-5"></i-lucide>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-center space-x-4 py-2">
+      <div class="flex items-center text-gray-600">
+        <i-lucide name="users" class="h-5 w-5 mr-1"></i-lucide>
+        <span class="text-sm">Capacity: {{office.capacity}}</span>
+      </div>
+      <div class="flex items-center text-gray-600">
+        <i-lucide name="dollar-sign" class="h-5 w-5 mr-1"></i-lucide>
+        <span class="text-sm">
+          Monthly: {{office.monthlyRental | currency:'EUR'}}
+        </span>
+      </div>
+    </div>
+
+    <itcorpo-amenity-list [amenities]="office.amenities"></itcorpo-amenity-list>
+
+    <button
+      (click)="view.emit()"
+      class="mt-4 text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+    >
+      View Details
+    </button>
+  </div>
+</div>

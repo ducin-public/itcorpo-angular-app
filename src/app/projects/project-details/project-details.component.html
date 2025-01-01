@@ -1,14 +1,38 @@
-<strong>{{ project.name }}</strong>
+<div class="max-w-4xl mx-auto" *ngIf="!isLoading && project">
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">{{project.name}}</h1>
+        <span class="px-3 py-1 rounded-full text-sm" [class]="getStatusColor(project.status)">
+          {{project.status | titlecase}}
+        </span>
+      </div>
 
-<section>
-  since {{ project.startDate | date }},
-  until {{ project.endDate | date }},
-  team size {{ project.team.length }},
-</section>
-<section>
-  <strong>budget</strong>: {{ project.budget | currency:"EUR" }}
-</section>
-<p>
-  {{ project.description }}
-</p>
-<itcorpo-image [src]="url()"></itcorpo-image>
+      <p class="text-gray-600 mb-6">{{project.description}}</p>
+
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Project Details</h2>
+          <div class="space-y-2">
+            <p class="text-sm">
+              <span class="text-gray-500">Budget:</span>
+              <span class="text-gray-900">{{formatCurrency(project.budget)}}</span>
+            </p>
+            <p class="text-sm">
+              <span class="text-gray-500">Start Date:</span>
+              <span class="text-gray-900">{{formatDate(project.startDate)}}</span>
+            </p>
+            <p class="text-sm">
+              <span class="text-gray-500">End Date:</span>
+              <span class="text-gray-900">{{formatDate(project.endDate)}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="flex justify-center items-center h-64">
+  <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+</div>

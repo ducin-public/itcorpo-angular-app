@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { apiURL } from './config';
-import { Expense } from 'src/app/api/dto';
+import { Expense } from './data-contracts';
 
 @Injectable({
   providedIn: 'root'

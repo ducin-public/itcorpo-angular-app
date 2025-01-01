@@ -1,6 +1,6 @@
 # `itcorpo-angular-app`
 
-- required node: v18+
+- required node: v18+ at least
 
 ## setup
 

@@ -1,11 +1,20 @@
-<nav>
-  <a class="menu-link" routerLink="/" routerLinkActive="active">🏠 Home</a> |
-  <a class="menu-link" routerLink="/license" routerLinkActive="active">📃 License</a> |
-  <a class="menu-link" routerLink="/finances" routerLinkActive="active">💰 Finances</a> |
-  <a class="menu-link" routerLink="/offices" routerLinkActive="active">🏢 Offices</a> |
-  <a class="menu-link" routerLink="/projects" routerLinkActive="active">🔨 Projects</a> |
-  <a class="menu-link" routerLink="/employees" routerLinkActive="active">👩‍💼 Employees</a> |
-  <a class="menu-link" routerLink="/benefits" routerLinkActive="active">🎳 Benefits</a> |
-
-  <itcorpo-dropdown [options]="(geoData$ | async)!"></itcorpo-dropdown>
-</nav>
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <span class="text-indigo-600">🏢</span>
+        <h1 class="text-2xl font-bold text-gray-900">
+          <a routerLink="/">ITCorpo Angular</a>
+        </h1>
+      </div>
+      <nav class="flex space-x-6">
+        <itcorpo-nav-item icon="🏠" text="Home" to="/"></itcorpo-nav-item>
+        <itcorpo-nav-item icon="💰" text="Finances" to="/finances"></itcorpo-nav-item>
+        <itcorpo-nav-item icon="👩‍💼" text="Employees" to="/employees"></itcorpo-nav-item>
+        <itcorpo-nav-item icon="🔨" text="Projects" to="/projects"></itcorpo-nav-item>
+        <itcorpo-nav-item icon="🏢" text="Offices" to="/offices"></itcorpo-nav-item>
+        <itcorpo-nav-item icon="🎳" text="Benefits" to="/benefits"></itcorpo-nav-item>
+      </nav>
+    </div>
+  </div>
+</header>

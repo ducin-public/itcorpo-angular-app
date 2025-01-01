@@ -30,7 +30,8 @@
     "@testing-library/angular": "^15.1.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.2",
+    "lucide-angular": "^0.469.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.1.4",
@@ -47,6 +48,15 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.5.4"
+    "typescript": "~5.5.4",
+    "tailwindcss": "^3.3.3",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16"
+  },
+  "overrides": {
+    "lucide-angular": {
+      "@angular/core": "^18.0.0",
+      "@angular/common": "^18.0.0"
+    }
   }
 }

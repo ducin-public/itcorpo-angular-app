@@ -1,11 +1,24 @@
-<h2>Our projects</h2>
+<div>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Projects</h1>
+    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-indigo-700">
+      <span>New Project</span>
+    </button>
+  </div>
 
-<section *ngIf="projects$ | async as projects">
-  count: {{ projects.length }}
-  <ul>
-    <li *ngFor="let p of projects">
-      <itcorpo-project-details [project]="p"></itcorpo-project-details>
-    </li>
-  </ul>
-</section>
+  <itcorpo-spinner *ngIf="!(projects$ | async)"></itcorpo-spinner>
+
+  <div class="space-y-6" *ngIf="projects$ | async as projects">
+    <div class="text-sm text-gray-600 mb-4">Total projects: {{ projects.length }}</div>
+
+    <div *ngFor="let project of projects">
+      <itcorpo-project-card
+        [project]="project"
+        (view)="onView(project)"
+        (edit)="onEdit(project)"
+        (delete)="onDelete(project)">
+      </itcorpo-project-card>
+    </div>
+  </div>
+</div>
 

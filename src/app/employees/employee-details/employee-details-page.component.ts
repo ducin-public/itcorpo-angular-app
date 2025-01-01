@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Employee } from 'src/app/api/dto';
 import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/api/data-contracts';
 
 @Component({
   selector: 'itcorpo-employee-details-page',

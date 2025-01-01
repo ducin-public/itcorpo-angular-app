@@ -1,9 +1,45 @@
-<strong>{{ office.city }}, {{ office.country }}</strong>
+<div class="max-w-4xl mx-auto" *ngIf="office$ | async as office">
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <img
+      [src]="getImageURL(office)"
+      [alt]="office.city + ', ' + office.country"
+      class="w-full h-64 object-cover"
+    />
 
-<section>
-  address: {{ office.address }},
-  owner: {{ office.estate.owner }}
-  monthly rental: {{ office.estate.monthlyRental | currency:"EUR" }}
-</section>
+    <div class="p-6">
+      <h1 class="text-2xl font-bold text-gray-900 mb-2">{{office.city}}, {{office.country}}</h1>
 
-<itcorpo-office-image [office]="office"></itcorpo-office-image>
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Office Details</h2>
+          <div class="space-y-2">
+            <p class="text-sm">
+              <span class="text-gray-500">Capacity:</span>
+              <span class="text-gray-900">{{office.capacity}}</span>
+            </p>
+            <p class="text-sm">
+              <span class="text-gray-500">Monthly Cost:</span>
+              <span class="text-gray-900">{{office.monthlyRental | currency:'EUR'}}</span>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Address</h2>
+          <div class="space-y-1 text-sm text-gray-600">
+            <p>{{office.address}}</p>
+            <p>{{office.city}}, {{office.estate.owner}} {{office.estate.phone}}</p>
+            <p>{{office.country}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Amenities</h2>
+        <itcorpo-amenity-list [amenities]="office.amenities"></itcorpo-amenity-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<itcorpo-spinner *ngIf="!(office$ | async)"></itcorpo-spinner>
