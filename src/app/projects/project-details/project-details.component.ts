@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectsService } from '../../api/projects.service';
-import { Project, ProjectStatus } from 'src/app/api/data-contracts';
+import { ProjectStatus, ProjectWithTeam } from 'src/app/api/data-contracts';
+import { projectImageUrl } from '../project-card/project-image';
 
 @Component({
   selector: 'itcorpo-project-details',
   templateUrl: './project-details.component.html'
 })
 export class ProjectDetailsComponent implements OnInit {
-  project?: Project;
+  project?: ProjectWithTeam;
   isLoading = true;
+
+  url(){
+    const p = this.project;
+    if (!p) throw new Error("No project");
+    return projectImageUrl(p.id);
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +26,7 @@ export class ProjectDetailsComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.projectsService.getProject(id).subscribe(project => {
+      this.projectsService.getProjectWithTeam(id).subscribe(project => {
         this.project = project;
         this.isLoading = false;
       });

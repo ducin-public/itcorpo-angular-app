@@ -1,10 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { OfficeAmenity } from 'src/app/api/data-contracts';
 
 @Component({
   selector: 'itcorpo-amenity-list',
   templateUrl: './amenity-list.component.html'
 })
 export class AmenityListComponent {
-  @Input() amenities!: OfficeAmenity[];
+  // server returns amenity codes as string[]; component accepts string[] only
+  @Input() amenities!: string[];
+
+  displayName(code?: string) {
+    if (!code) return '';
+    return code
+      .toLowerCase()
+      .replace(/[_-]/g, ' ')
+      .replace(/\b\w/g, m => m.toUpperCase());
+  }
 }

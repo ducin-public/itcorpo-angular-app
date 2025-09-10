@@ -16,7 +16,9 @@ export class ProjectCardComponent {
   constructor(private router: Router) {}
 
   url(){
-    return projectImageUrl(this.project)
+    const p = this.project;
+    if (!p) throw new Error("No project");
+    return projectImageUrl(p.id)
   }
 
   getStatusColor(status: string): string {

@@ -1,0 +1,292 @@
+/* Container */
+.employee-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.employee-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e8e8e8;
+}
+
+.employee-image-section {
+  flex-shrink: 0;
+}
+
+.employee-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.employee-basic-info {
+  flex: 1;
+}
+
+.employee-name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+}
+
+.employee-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+.employee-age {
+  font-weight: 500;
+}
+
+.employee-position {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.employee-department {
+  font-size: 1.125rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.meta-separator {
+  color: #cbd5e0;
+  font-weight: 600;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Info Cards */
+.info-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e8e8e8;
+  transition: all 0.2s ease;
+}
+
+.info-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #d4d4d4;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f7fafc;
+}
+
+.card-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #718096;
+}
+
+/* Info Items */
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f7fafc;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #718096;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.info-value {
+  font-weight: 500;
+  color: #2d3748;
+  text-align: right;
+  flex: 1;
+}
+
+.salary {
+  font-weight: 700;
+  color: #38a169;
+  font-size: 1.125rem;
+}
+
+.email-link {
+  color: #4299e1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.email-link:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.address {
+  line-height: 1.4;
+}
+
+/* Skills Section */
+.skills-card {
+  grid-column: span 2;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-tag {
+  display: inline-block;
+  background-color: #f7fafc;
+  color: #4a5568;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  background-color: #edf2f7;
+  border-color: #cbd5e0;
+  transform: translateY(-1px);
+}
+
+/* Bio Section */
+.bio-card {
+  grid-column: span 2;
+}
+
+.bio-text {
+  line-height: 1.6;
+  color: #4a5568;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .employee-details-container {
+    padding: 1rem;
+  }
+
+  .employee-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .employee-name {
+    font-size: 1.875rem;
+  }
+
+  .employee-meta {
+    justify-content: center;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skills-card,
+  .bio-card {
+    grid-column: span 1;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .info-value {
+    text-align: left;
+  }
+
+  .info-label {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .employee-name {
+    font-size: 1.625rem;
+  }
+
+  .info-card {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .employee-details-container {
+    padding: 0;
+    background-color: white;
+  }
+
+  .info-card {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+    break-inside: avoid;
+  }
+
+  .employee-header {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+  }
+}

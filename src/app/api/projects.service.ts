@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { apiURL } from './config';
-import { Project } from './data-contracts';
+import { Project, ProjectWithTeam } from './data-contracts';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,16 @@ export class ProjectsService {
     return this.http.get<Project>(`${apiURL}/projects/${id}`)
   }
 
-  getPage(page: number = 1, pageSize = 50) {
-    return this.http.get<Project[]>(`${apiURL}/projects?_limit=${pageSize}&_page=${page}`)
+  getProjectWithTeam(id: ProjectWithTeam['id']) {
+    return this.http.get<ProjectWithTeam>(`${apiURL}/projects/${id}/team`)
+  }
+
+  getPage(page: number = 1, pageSize = 20) {
+    const params = new HttpParams()
+      .set('pageSize', String(pageSize))
+      .set('page', String(page));
+
+    return this.http.get<Project[]>(`${apiURL}/projects`, { params })
   }
 
   getCount() {

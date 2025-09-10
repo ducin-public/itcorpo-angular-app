@@ -29,9 +29,10 @@ export class EmployeesService {
   }
 
   getPage(criteria: EmployeeCriteria = {}, page: number = 1, pageSize = 50) {
-    const query = applyQueryString({ ...criteria,
-      _limit: pageSize,
-      _page: page
+    const query = applyQueryString({
+      ...criteria,
+      pageSize,
+      page
     })
     return this.http.get<Employee[]>(`${apiURL}/employees${query}`)
   }

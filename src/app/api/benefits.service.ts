@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { apiURL } from './config';
-import { Benefit } from './data-contracts';
+import { BenefitSubscription } from './data-contracts';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,20 @@ export class BenefitsService {
     private http: HttpClient
   ) { }
 
-  deleteBenefit(id: Benefit['id']) {
+  deleteBenefit(id: BenefitSubscription['id']) {
     return this.http.delete(`${apiURL}/benefits/${id}`)
   }
 
-  getBenefit(id: Benefit['id']) {
-    return this.http.get<Benefit>(`${apiURL}/benefits/${id}`)
+  getBenefitById(id: BenefitSubscription['id']) {
+    return this.http.get<BenefitSubscription>(`${apiURL}/benefits/${id}`)
   }
 
   getPage(page: number = 1, pageSize = 50) {
-    return this.http.get<Benefit[]>(`${apiURL}/benefits?_limit=${pageSize}&_page=${page}`)
+    const params = new HttpParams()
+      .set('pageSize', String(pageSize))
+      .set('page', String(page));
+
+    return this.http.get<BenefitSubscription[]>(`${apiURL}/benefits`, { params })
   }
 
   getCount() {

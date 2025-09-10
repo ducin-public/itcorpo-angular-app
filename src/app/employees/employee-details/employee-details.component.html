@@ -1,20 +1,125 @@
-<h2>{{ employee.firstName }} {{ employee.lastName }} (age: {{ employee.personalInfo.age }})</h2>
+<div class="employee-details-container">
+  <a [routerLink]="['/employees']" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-4 group">
+    <svg class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Back to all employees
+  </a>
+  <!-- Header Section -->
+  <div class="employee-header">
+    <div class="employee-image-section">
+      <itcorpo-employee-image [employee]="employee" class="employee-image"></itcorpo-employee-image>
+    </div>
 
-<itcorpo-employee-image [employee]="employee"></itcorpo-employee-image>
+    <div class="employee-basic-info">
+      <h1 class="employee-name">{{ employee.name }}</h1>
+      <div class="employee-meta">
+        <span class="employee-age">{{ employee.personalInfo.age }} years old</span>
+        <span class="meta-separator">•</span>
+        <span class="employee-position">{{ employee.position }}</span>
+      </div>
+      <div class="employee-department">{{ employee.department }}</div>
+    </div>
+  </div>
 
-<section>
-  {{ employee.title }},
-  earning {{ employee.salary | currency:"EUR" }},
-  hired: {{ employee.hiredAt | date }}
+  <!-- Main Content Grid -->
+  <div class="content-grid">
+    <!-- Employment Information -->
+    <div class="info-card">
+      <h2 class="card-title">
+        <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 002 2h2a1 1 0 001-1V6a2 2 0 00-2-2h-2zm0 0H8m8 0v10a2 2 0 01-2 2H10a2 2 0 01-2-2V6"></path>
+        </svg>
+        Employment
+      </h2>
+      <div class="info-item">
+        <span class="info-label">Salary</span>
+        <span class="info-value salary">{{ employee.employment.currentSalary | currency:"EUR" }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Start Date</span>
+        <span class="info-value">{{ employee.employment.startDate | date:'mediumDate' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Contract Type</span>
+        <span class="info-value">{{ employee.employment.contractType }}</span>
+      </div>
+    </div>
 
-  <section>
-    office: {{ employee.office.join(', ') }}
-  </section>
+    <!-- Office Information -->
+    <div class="info-card">
+      <h2 class="card-title">
+        <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        Office Location
+      </h2>
+      <div class="info-item">
+        <span class="info-label">Office</span>
+        <span class="info-value">{{ employee.office }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Office Code</span>
+        <span class="info-value">{{ employee.officeCode }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Keycard ID</span>
+        <span class="info-value">{{ employee.keycardId }}</span>
+      </div>
+    </div>
 
-  <h3>Skills</h3>
-  <ul>
-    <li *ngFor="let skill of employee.skills">{{ skill }}</li>
-  </ul>
+    <!-- Contact Information -->
+    <div class="info-card">
+      <h2 class="card-title">
+        <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        Contact
+      </h2>
+      <div class="info-item">
+        <span class="info-label">Email</span>
+        <a href="mailto:{{ employee.personalInfo.email }}" class="info-value email-link">
+          {{ employee.personalInfo.email }}
+        </a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Phone</span>
+        <span class="info-value">{{ employee.personalInfo.phone }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Address</span>
+        <span class="info-value address">
+          {{ employee.personalInfo.address.street }}<br>
+          {{ employee.personalInfo.address.city }}, {{ employee.personalInfo.address.country }}
+        </span>
+      </div>
+    </div>
 
-  <a href="mailto:{{ employee.personalInfo.email }}"></a>
-</section>
+    <!-- Skills Section -->
+    <div class="info-card skills-card">
+      <h2 class="card-title">
+        <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+        </svg>
+        Skills & Expertise
+      </h2>
+      <div class="skills-list">
+        <span *ngFor="let skill of employee.skills" class="skill-tag">
+          {{ skill }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Bio Section (if available) -->
+    <div *ngIf="employee.bio" class="info-card bio-card">
+      <h2 class="card-title">
+        <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+        About
+      </h2>
+      <p class="bio-text">{{ employee.bio }}</p>
+    </div>
+  </div>
+</div>

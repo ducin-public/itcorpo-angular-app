@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExpensesListingComponent } from './expenses-listing/expenses-listing.component';
@@ -10,6 +10,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+  ],
+  providers: [
+    CurrencyPipe
   ]
 })
 export class FinancesModule { }

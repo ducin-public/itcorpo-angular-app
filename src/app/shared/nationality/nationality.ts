@@ -8,7 +8,8 @@ const flags = {
   NL: "🇳🇱",
   PL: "🇵🇱",
   IT: "🇮🇹",
-  ES: "🇪🇸"
+  ES: "🇪🇸",
+  IN: "🇮🇳",
 }
 
 export const flag = (nat: Nationality) => flags[nat]

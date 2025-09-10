@@ -1,21 +1,118 @@
-<itcorpo-sidebar [(collapsed)]="sidebarCollapsed">
-  RECENTLY VIEWED EMPLOYEES DISPLAYED HERE
-</itcorpo-sidebar>
+<div class="employee-listing-container">
+  <!-- Sidebar -->
+  <itcorpo-sidebar [(collapsed)]="sidebarCollapsed" class="sidebar">
+    <div class="p-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-3">Recently Viewed</h3>
+      <p class="text-gray-600 text-sm">Recently viewed employees will appear here</p>
+    </div>
+  </itcorpo-sidebar>
 
-<span (click)="onToggleSidebar()" class="icon">📖</span>
+  <!-- Main Content -->
+  <div class="main-content" [class.shifted]="!sidebarCollapsed">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center space-x-4">
+          <button
+            (click)="onToggleSidebar()"
+            class="sidebar-toggle-btn"
+            [attr.aria-label]="sidebarCollapsed ? 'Open sidebar' : 'Close sidebar'">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <h1 class="page-title">Our Employees</h1>
+        </div>
+      </div>
 
-<h2>Our Employees</h2>
+      <!-- Filters Section -->
+      <div class="filters-section">
+        <div class="filter-group">
+          <label class="filter-label" for="city-filter">Filter by City:</label>
+          <itcorpo-dropdown
+            id="city-filter"
+            [options]="cities"
+            class="city-dropdown">
+          </itcorpo-dropdown>
+        </div>
+      </div>
+    </div>
 
-city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
+    <!-- Loading State -->
+    <div *ngIf="!(employees$ | async)" class="loading-container">
+      <itcorpo-spinner></itcorpo-spinner>
+      <p class="loading-text">Loading employees...</p>
+    </div>
 
-<itcorpo-spinner *ngIf="!(employees$ | async)"></itcorpo-spinner>
+    <!-- Employees Section -->
+    <section *ngIf="employees$ | async as employees" class="employees-section">
+      <!-- Results Summary -->
+      <div class="results-summary">
+        <h2 class="results-title">
+          <span class="results-count">{{ employees.length }}</span>
+          {{ employees.length === 1 ? 'Employee' : 'Employees' }}
+        </h2>
+      </div>
 
-<section *ngIf="employees$ | async as employees">
-  count: {{ employees.length }}
-  <ul>
-    <li *ngFor="let e of employees">
-      {{ e | nameAndTitle }} {{ e | flag }}
-      (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
-    </li>
-  </ul>
-</section>
+      <!-- Employee List -->
+      <div class="employee-list">
+        <div
+          *ngFor="let e of employees; trackBy: trackByEmployeeId"
+          class="employee-row">
+
+          <!-- Employee Avatar -->
+          <div class="employee-avatar">
+            <div class="avatar-circle">
+              <span class="avatar-initials">{{ getInitials(e.name) }}</span>
+            </div>
+          </div>
+
+          <!-- Employee Info -->
+          <div class="employee-info">
+            <div class="employee-primary">
+              <h3 class="employee-name">{{ e.name }}</h3>
+              <span class="flag-badge">{{ e | flag }}</span>
+            </div>
+            <div class="employee-details">
+              <span class="employee-position">{{ e.position }}</span>
+              <span class="detail-separator">•</span>
+              <span class="employee-department">{{ e.department }}</span>
+              <span class="detail-separator">•</span>
+              <span class="employee-office">
+                <svg class="office-icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                {{ e.office }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Employee Actions -->
+          <div class="employee-actions">
+            <a
+              routerLink="/employees/{{ e.id }}"
+              routerLinkActive="active"
+              class="details-btn">
+              <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="employees.length === 0" class="empty-state">
+        <div class="empty-state-icon">
+          <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <h3 class="empty-state-title">No employees found</h3>
+        <p class="empty-state-description">Try adjusting your search criteria or check back later.</p>
+      </div>
+    </section>
+  </div>
+</div>

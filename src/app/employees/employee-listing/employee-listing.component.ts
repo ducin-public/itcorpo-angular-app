@@ -35,4 +35,16 @@ export class EmployeeListingComponent implements OnInit {
   onToggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed
   }
+
+  trackByEmployeeId(index: number, employee: Employee): number {
+    return employee.id;
+  }
+
+  getInitials(name: string): string {
+    return name
+      .split(' ')
+      .map(part => part.charAt(0).toUpperCase())
+      .slice(0, 2)
+      .join('');
+  }
 }
