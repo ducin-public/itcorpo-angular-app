@@ -1,29 +1,21 @@
 <div class="bg-white rounded-lg shadow-sm p-6">
   <div class="flex items-start justify-between">
     <div>
-  <span [class]="'py-1 rounded-full text-xs font-medium' + getTypeClass(benefit)">
-        {{ capitalize(benefit.service.provider) }}
+  <span [class]="'px-2 py-1 rounded-full text-xs font-medium ' + getTypeClass(benefit)">
+        {{ capitalize(benefit.service) }}
       </span>
-      <h3 class="text-normal font-semibold text-gray-900 mt-2">
-        {{ benefit.service.name }}
+      <h3 class="text-lg font-semibold text-gray-900 mt-2">
+        {{ benefit.service }}
       </h3>
     </div>
-    <div class="flex space-x-2">
-      <a [routerLink]="['/benefits', benefit.id]" class="text-gray-400 hover:text-indigo-600">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </a>
-      <button
-        (click)="delete.emit()"
-        class="text-gray-400 hover:text-red-600"
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"/>
-        </svg>
-      </button>
-    </div>
+    <button
+      (click)="delete.emit()"
+      class="text-gray-400 hover:text-red-600"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"/>
+      </svg>
+    </button>
   </div>
 
   <div class="mt-4 space-y-2">

@@ -16,30 +16,16 @@ export class BenefitCardComponent {
     'life': 'bg-yellow-100 text-yellow-800'
   };
 
-  capitalize(str: unknown): string {
-    // Safely coerce to string to avoid runtime errors when non-strings are passed
-    const s = str == null ? '' : String(str);
-    if (s.length === 0) return '';
-    return s.charAt(0).toUpperCase() + s.slice(1);
+  capitalize(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   /**
    * Return CSS class for benefit service type.
    * Uses `service` property from the Benefit object (generated model).
    */
-  getTypeClass(benefit: BenefitSubscription): string {
-    const map: Record<string, string> = {
-      'lunch-card': 'health',
-      'LUNCH_CARD': 'health',
-      'healthcare': 'health',
-      'health': 'health',
-      'dental': 'dental',
-      'vision': 'vision',
-      'life': 'life'
-    };
-
-    // FIXME:
-    const key = (map[benefit.service.name] || map[String(benefit.service.name).toLowerCase()] || '') as string;
+  getTypeClass(benefit: Benefit): string {
+    const key = (benefit.service || '').toLowerCase();
     return this.typeColors[key] || '';
   }
 }
