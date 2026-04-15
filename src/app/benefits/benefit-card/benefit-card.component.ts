@@ -22,10 +22,10 @@ export class BenefitCardComponent {
 
   /**
    * Return CSS class for benefit service type.
-   * Uses `service` property from the Benefit object (generated model).
+   * Uses `service.name` from the subscription (generated model).
    */
-  getTypeClass(benefit: Benefit): string {
-    const key = (benefit.service || '').toLowerCase();
+  getTypeClass(benefit: BenefitSubscription): string {
+    const key = (benefit.service?.name || '').toLowerCase();
     return this.typeColors[key] || '';
   }
 }
