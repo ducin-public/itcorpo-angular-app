@@ -4,8 +4,9 @@ import { officeImageURL } from '../officeImageURL';
 import { Office, OfficeAmenity } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-office-card',
-  templateUrl: './office-card.component.html'
+    selector: 'itcorpo-office-card',
+    templateUrl: './office-card.component.html',
+    standalone: false
 })
 export class OfficeCardComponent {
   @Input() office!: Office;

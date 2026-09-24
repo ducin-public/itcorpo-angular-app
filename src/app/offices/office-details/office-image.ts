@@ -4,8 +4,9 @@ import { Office } from 'src/app/api/data-contracts';
 import { apiURL } from 'src/app/api/config';
 
 @Component({
-  selector: 'itcorpo-office-image',
-  template: `<itcorpo-image [src]="url()"></itcorpo-image>`
+    selector: 'itcorpo-office-image',
+    template: `<itcorpo-image [src]="url()"></itcorpo-image>`,
+    standalone: false
 })
 export class OfficeImageComponent {
   @Input()

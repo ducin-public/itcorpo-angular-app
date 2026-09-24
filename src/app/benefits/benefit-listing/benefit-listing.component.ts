@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 import { BenefitSubscription } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-benefit-listing',
-  templateUrl: './benefit-listing.component.html'
+    selector: 'itcorpo-benefit-listing',
+    templateUrl: './benefit-listing.component.html',
+    standalone: false
 })
 export class BenefitListingComponent implements OnInit {
   benefits$!: Observable<BenefitSubscription[]>

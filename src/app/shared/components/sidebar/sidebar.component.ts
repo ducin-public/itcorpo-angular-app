@@ -3,14 +3,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'itcorpo-sidebar',
-  template: `
+    selector: 'itcorpo-sidebar',
+    template: `
 <div id="mySidebar" class="sidebar" [ngClass]="{'collapsed': collapsed}">
   <a class="closebtn" (click)="onCloseClick()">×</a>
   <ng-content></ng-content>
 </div>
   `,
-  styleUrls: ['./sidebar.component.css']
+    styleUrls: ['./sidebar.component.css'],
+    standalone: false
 })
 export class SidebarComponent {
   @Input()

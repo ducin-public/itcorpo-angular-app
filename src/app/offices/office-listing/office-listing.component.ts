@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { Office } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-office-listing',
-  templateUrl: './office-listing.component.html'
+    selector: 'itcorpo-office-listing',
+    templateUrl: './office-listing.component.html',
+    standalone: false
 })
 export class OfficeListingComponent implements OnInit {
   offices$!: Observable<Office[]>;

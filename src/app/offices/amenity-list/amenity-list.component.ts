@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'itcorpo-amenity-list',
-  templateUrl: './amenity-list.component.html'
+    selector: 'itcorpo-amenity-list',
+    templateUrl: './amenity-list.component.html',
+    standalone: false
 })
 export class AmenityListComponent {
   // server returns amenity codes as string[]; component accepts string[] only

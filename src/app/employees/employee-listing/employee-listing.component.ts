@@ -7,9 +7,10 @@ import { Employee } from 'src/app/api/data-contracts';
 import { EmployeesService } from 'src/app/api/employees.service';
 
 @Component({
-  selector: 'itcorpo-employee-listing',
-  templateUrl: './employee-listing.component.html',
-  styleUrls: ['./employee-listing.component.css']
+    selector: 'itcorpo-employee-listing',
+    templateUrl: './employee-listing.component.html',
+    styleUrls: ['./employee-listing.component.css'],
+    standalone: false
 })
 export class EmployeeListingComponent implements OnInit {
   employees$!: Observable<Employee[]>

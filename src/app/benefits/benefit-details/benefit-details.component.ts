@@ -5,8 +5,9 @@ import { BenefitsService } from 'src/app/api/benefits.service';
 import { BenefitSubscription } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-benefit-details',
-  templateUrl: './benefit-details.component.html'
+    selector: 'itcorpo-benefit-details',
+    templateUrl: './benefit-details.component.html',
+    standalone: false
 })
 export class BenefitDetailsComponent implements OnInit {
   benefit$!: Observable<BenefitSubscription>;

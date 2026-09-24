@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'itcorpo-nav-item',
-  template: `
+    selector: 'itcorpo-nav-item',
+    template: `
     <a
       [routerLink]="to"
       routerLinkActive="text-indigo-600"
@@ -11,7 +11,8 @@ import { Component, Input } from '@angular/core';
       <span [innerHTML]="icon"></span>
       <span class="font-medium">{{text}}</span>
     </a>
-  `
+  `,
+    standalone: false
 })
 export class NavItemComponent {
   @Input() icon!: string;

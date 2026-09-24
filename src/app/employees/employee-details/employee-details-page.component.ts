@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Employee } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-employee-details-page',
-  template: `<itcorpo-employee-details [employee]="employee"></itcorpo-employee-details>`
+    selector: 'itcorpo-employee-details-page',
+    template: `<itcorpo-employee-details [employee]="employee"></itcorpo-employee-details>`,
+    standalone: false
 })
 export class EmployeeDetailsPageComponent {
   employee!: Employee

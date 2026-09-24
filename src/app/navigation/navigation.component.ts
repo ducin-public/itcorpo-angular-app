@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { GeoService } from '../api/geo.service';
 
 @Component({
-  selector: 'itcorpo-navigation',
-  templateUrl: './navigation.component.html'
+    selector: 'itcorpo-navigation',
+    templateUrl: './navigation.component.html',
+    standalone: false
 })
 export class NavigationComponent {
   geoData$!: Observable<{ [k: string]: string }>

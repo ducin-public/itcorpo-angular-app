@@ -2,8 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { BenefitSubscription } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-benefit-card',
-  templateUrl: './benefit-card.component.html'
+    selector: 'itcorpo-benefit-card',
+    templateUrl: './benefit-card.component.html',
+    standalone: false
 })
 export class BenefitCardComponent {
   @Input() benefit!: BenefitSubscription;
@@ -24,8 +25,8 @@ export class BenefitCardComponent {
    * Return CSS class for benefit service type.
    * Uses `service` property from the Benefit object (generated model).
    */
-  getTypeClass(benefit: Benefit): string {
-    const key = (benefit.service || '').toLowerCase();
+  getTypeClass(benefit: BenefitSubscription): string {
+    const key = (benefit.service?.name || '').toLowerCase();
     return this.typeColors[key] || '';
   }
 }

@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ProjectStatus } from '../api/data-contracts';
 
 @Pipe({
-  name: 'projectStatus'
+    name: 'projectStatus',
+    standalone: false
 })
 export class ProjectStatusPipe implements PipeTransform {
   transform(value: ProjectStatus): string {

@@ -5,8 +5,9 @@ import { ProjectStatus, ProjectWithTeam } from 'src/app/api/data-contracts';
 import { projectImageUrl } from '../project-card/project-image';
 
 @Component({
-  selector: 'itcorpo-project-details',
-  templateUrl: './project-details.component.html'
+    selector: 'itcorpo-project-details',
+    templateUrl: './project-details.component.html',
+    standalone: false
 })
 export class ProjectDetailsComponent implements OnInit {
   project?: ProjectWithTeam;

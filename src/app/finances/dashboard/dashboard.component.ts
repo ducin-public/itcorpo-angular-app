@@ -12,9 +12,10 @@ import { Observable, of } from 'rxjs';
 import { Expense } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'itcorpo-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css'],
+    standalone: false
 })
 export class DashboardComponent implements OnInit {
   monthlyCost$!: Observable<number>

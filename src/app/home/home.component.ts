@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'itcorpo-home',
-  template: `
+    selector: 'itcorpo-home',
+    template: `
     <section class="flex flex-col items-center justify-center min-h-[240px] p-8 text-center">
       <div class="max-w-xl w-full">
         <img src="assets/commercial-building.png" alt="Office building" class="mx-auto w-40 h-40 sm:w-48 sm:h-48 object-contain rounded-lg shadow-lg mb-6" />
@@ -13,9 +13,10 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
     :host { display: block; }
-  `]
+  `],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   title = 'IT Corpo';

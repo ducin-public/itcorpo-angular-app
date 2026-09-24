@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'itcorpo-round-button',
-  template: `<button class="round" (click)="onClickHandle($event)">☰</button>`,
-  styles: [`
+    selector: 'itcorpo-round-button',
+    template: `<button class="round" (click)="onClickHandle($event)">☰</button>`,
+    styles: [`
 button.round {
   font-size: 20px;
   color: white;
@@ -16,7 +16,8 @@ button.round {
   margin: 20px;
   cursor:pointer;
 }
-  `]
+  `],
+    standalone: false
 })
 export class RoundButtonComponent {
   @Output()

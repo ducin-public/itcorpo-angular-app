@@ -4,8 +4,9 @@ import { Project } from 'src/app/api/data-contracts';
 import { projectImageUrl } from './project-image';
 
 @Component({
-  selector: 'itcorpo-project-card',
-  templateUrl: './project-card.component.html'
+    selector: 'itcorpo-project-card',
+    templateUrl: './project-card.component.html',
+    standalone: false
 })
 export class ProjectCardComponent {
   @Input() project!: Project;

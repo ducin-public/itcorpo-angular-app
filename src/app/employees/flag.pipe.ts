@@ -4,7 +4,8 @@ import { Employee } from 'src/app/api/data-contracts';
 import { flag } from '../shared/nationality/nationality';
 
 @Pipe({
-  name: 'flag'
+    name: 'flag',
+    standalone: false
 })
 export class FlagPipe implements PipeTransform {
 

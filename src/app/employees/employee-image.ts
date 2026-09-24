@@ -4,8 +4,9 @@ import { Employee } from 'src/app/api/data-contracts';
 import { apiURL } from 'src/app/api/config';
 
 @Component({
-  selector: 'itcorpo-employee-image',
-  template: `<itcorpo-image [src]="url()"></itcorpo-image>`
+    selector: 'itcorpo-employee-image',
+    template: `<itcorpo-image [src]="url()"></itcorpo-image>`,
+    standalone: false
 })
 export class EmployeeImageComponent {
   @Input()

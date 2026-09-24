@@ -3,9 +3,10 @@ import { Component, Input } from '@angular/core';
 import { Expense } from 'src/app/api/data-contracts';
 
 @Component({
-  selector: 'itcorpo-expenses-listing',
-  templateUrl: './expenses-listing.component.html',
-  styleUrls: ['./expenses-listing.component.css']
+    selector: 'itcorpo-expenses-listing',
+    templateUrl: './expenses-listing.component.html',
+    styleUrls: ['./expenses-listing.component.css'],
+    standalone: false
 })
 export class ExpensesListingComponent {
   @Input()

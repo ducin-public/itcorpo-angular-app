@@ -7,8 +7,9 @@ import { OfficesService } from 'src/app/api/offices.service';
 import { officeImageURL } from '../officeImageURL';
 
 @Component({
-  selector: 'itcorpo-office-details',
-  templateUrl: './office-details.component.html'
+    selector: 'itcorpo-office-details',
+    templateUrl: './office-details.component.html',
+    standalone: false
 })
 export class OfficeDetailsComponent implements OnInit {
   office$!: Observable<Office | undefined>;
