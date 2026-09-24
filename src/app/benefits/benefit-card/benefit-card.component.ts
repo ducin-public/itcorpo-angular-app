@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { BenefitSubscription } from 'src/app/api/data-contracts';
 
 @Component({
     selector: 'itcorpo-benefit-card',
     templateUrl: './benefit-card.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BenefitCardComponent {

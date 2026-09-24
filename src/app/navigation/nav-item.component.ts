@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'itcorpo-nav-item',
@@ -12,6 +12,7 @@ import { Component, Input } from '@angular/core';
       <span class="font-medium">{{text}}</span>
     </a>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NavItemComponent {

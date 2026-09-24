@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { OfficesService } from 'src/app/api/offices.service';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { Office } from 'src/app/api/data-contracts';
 @Component({
     selector: 'itcorpo-office-listing',
     templateUrl: './office-listing.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OfficeListingComponent implements OnInit {

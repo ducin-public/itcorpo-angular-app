@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Employee } from 'src/app/api/data-contracts';
 
 @Component({
     selector: 'itcorpo-employee-details',
     templateUrl: './employee-details.component.html',
     styleUrls: ['./employee-details.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EmployeeDetailsComponent {

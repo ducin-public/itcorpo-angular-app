@@ -8,7 +8,7 @@ import { OfficeListingComponent } from './office-listing/office-listing.componen
 import { OfficeDetailsComponent } from './office-details/office-details.component';
 import { OfficeImageComponent } from './office-details/office-image';
 import { OfficeCardComponent } from './office-card/office-card.component';
-import { LucideAngularModule, Plus, Eye, Edit, Users, DollarSign } from 'lucide-angular';
+import { LucidePlus, LucideEye, LucideEdit, LucideUsers, LucideDollarSign } from '@lucide/angular';
 import { AmenityListComponent } from './amenity-list/amenity-list.component';
 
 @NgModule({
@@ -22,7 +22,11 @@ import { AmenityListComponent } from './amenity-list/amenity-list.component';
   imports: [
     CommonModule,
     SharedModule,
-    LucideAngularModule.pick({ Plus, Eye, Edit, Users, DollarSign })
+    LucidePlus,
+    LucideEye,
+    LucideEdit,
+    LucideUsers,
+    LucideDollarSign
   ],
   exports :[
     OfficeListingComponent,

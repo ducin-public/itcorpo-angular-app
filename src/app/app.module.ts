@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr
 } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
@@ -19,7 +20,6 @@ import { FinancesModule } from "./finances/finances.module";
 import { BenefitsModule } from "./benefits/benefits.module";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { NavItemComponent } from "./navigation/nav-item.component";
-import { LucideAngularModule, Plus, Eye, Edit, Users, DollarSign } from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -38,11 +38,10 @@ import { LucideAngularModule, Plus, Eye, Edit, Users, DollarSign } from 'lucide-
     ProjectsModule,
     FinancesModule,
     BenefitsModule,
-    LucideAngularModule.pick({ Plus, Eye, Edit, Users, DollarSign })
   ],
   bootstrap: [AppComponent],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withXhr(), withInterceptorsFromDi())
   ],
 })
 export class AppModule {}

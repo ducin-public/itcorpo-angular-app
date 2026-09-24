@@ -1,6 +1,6 @@
 // https://www.w3schools.com/howto/howto_js_collapse_sidepanel.asp
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'itcorpo-sidebar',
@@ -11,6 +11,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 </div>
   `,
     styleUrls: ['./sidebar.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SidebarComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BenefitsService } from 'src/app/api/benefits.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { BenefitSubscription } from 'src/app/api/data-contracts';
 @Component({
     selector: 'itcorpo-benefit-listing',
     templateUrl: './benefit-listing.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BenefitListingComponent implements OnInit {

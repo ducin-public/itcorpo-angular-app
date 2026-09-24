@@ -19,30 +19,31 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
-    "@angular/animations": "^21.2.24",
-    "@angular/common": "^21.2.24",
-    "@angular/compiler": "^21.2.24",
-    "@angular/core": "^21.2.24",
-    "@angular/forms": "^21.2.24",
-    "@angular/platform-browser": "^21.2.24",
-    "@angular/platform-browser-dynamic": "^21.2.24",
-    "@angular/router": "^21.2.24",
+    "@angular/animations": "^22.2.0",
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@angular/platform-browser-dynamic": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@lucide/angular": "^1.48.0",
     "@testing-library/angular": "^15.1.0",
-    "lucide-angular": "^0.469.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.2.24",
-    "@angular/cli": "^21.2.24",
-    "@angular/compiler-cli": "^21.2.24",
-    "@angular/language-service": "^21.2.24",
+    "@angular-devkit/build-angular": "^22.2.0",
+    "@angular/cli": "^22.2.0",
+    "@angular/compiler-cli": "^22.2.0",
+    "@angular/language-service": "^22.2.0",
     "@cypress/schematic": "^2.5.0",
     "@types/jasmine": "~4.3.0",
     "@types/node": "^24.13.6",
     "autoprefixer": "^10.4.16",
     "cypress": "12.11.0",
+    "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
@@ -51,12 +52,6 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",
-    "typescript": "~5.9.3"
-  },
-  "overrides": {
-    "lucide-angular": {
-      "@angular/core": "^18.0.0",
-      "@angular/common": "^18.0.0"
-    }
+    "typescript": "~6.0.3"
   }
 }

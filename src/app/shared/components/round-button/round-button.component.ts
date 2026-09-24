@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'itcorpo-round-button',
@@ -17,6 +17,7 @@ button.round {
   cursor:pointer;
 }
   `],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RoundButtonComponent {

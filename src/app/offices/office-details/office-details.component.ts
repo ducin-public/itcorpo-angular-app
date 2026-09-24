@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { officeImageURL } from '../officeImageURL';
 @Component({
     selector: 'itcorpo-office-details',
     templateUrl: './office-details.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OfficeDetailsComponent implements OnInit {

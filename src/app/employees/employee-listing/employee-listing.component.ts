@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ import { EmployeesService } from 'src/app/api/employees.service';
     selector: 'itcorpo-employee-listing',
     templateUrl: './employee-listing.component.html',
     styleUrls: ['./employee-listing.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EmployeeListingComponent implements OnInit {

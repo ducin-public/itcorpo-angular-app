@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { apiURL } from '../../../api/config';
 
@@ -17,6 +17,7 @@ img.thumb:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
   `],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ImageComponent {

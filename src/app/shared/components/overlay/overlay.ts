@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 // originally based on https://manuel-rauber.com/2016/01/05/angular-2-spinner-component/
 
@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OverlayComponent {

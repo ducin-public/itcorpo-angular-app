@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ProjectsService } from 'src/app/api/projects.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { Project } from 'src/app/api/data-contracts';
 @Component({
     selector: 'itcorpo-project-listing',
     templateUrl: './project-listing.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProjectListingComponent implements OnInit {

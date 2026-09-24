@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { GeoService } from '../api/geo.service';
 @Component({
     selector: 'itcorpo-navigation',
     templateUrl: './navigation.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NavigationComponent {

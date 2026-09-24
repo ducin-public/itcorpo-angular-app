@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { BenefitsService } from 'src/app/api/benefits.service';
@@ -7,6 +7,7 @@ import { BenefitSubscription } from 'src/app/api/data-contracts';
 @Component({
     selector: 'itcorpo-benefit-details',
     templateUrl: './benefit-details.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BenefitDetailsComponent implements OnInit {

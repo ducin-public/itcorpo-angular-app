@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/api/data-contracts';
 import { projectImageUrl } from './project-image';
@@ -6,6 +6,7 @@ import { projectImageUrl } from './project-image';
 @Component({
     selector: 'itcorpo-project-card',
     templateUrl: './project-card.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProjectCardComponent {

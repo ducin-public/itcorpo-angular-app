@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { LicenseService } from '../api/license.service';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
     selector: 'itcorpo-license',
     template: `<h2>license</h2><pre>{{ content$ | async }}</pre>`,
     styleUrls: ['./license.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LicenseComponent {

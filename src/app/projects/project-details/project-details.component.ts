@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectsService } from '../../api/projects.service';
 import { ProjectStatus, ProjectWithTeam } from 'src/app/api/data-contracts';
@@ -7,6 +7,7 @@ import { projectImageUrl } from '../project-card/project-image';
 @Component({
     selector: 'itcorpo-project-details',
     templateUrl: './project-details.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProjectDetailsComponent implements OnInit {

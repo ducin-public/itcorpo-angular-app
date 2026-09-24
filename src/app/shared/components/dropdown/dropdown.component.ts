@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Output, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 export type DropdownOptions = {
   [key: string]: string;
@@ -8,6 +8,7 @@ export type DropdownOptions = {
     selector: 'itcorpo-dropdown',
     templateUrl: './dropdown.component.html',
     styles: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DropdownComponent {

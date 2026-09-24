@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 
 import { EmployeesService } from 'src/app/api/employees.service';
@@ -15,6 +15,7 @@ import { Expense } from 'src/app/api/data-contracts';
     selector: 'itcorpo-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DashboardComponent implements OnInit {
