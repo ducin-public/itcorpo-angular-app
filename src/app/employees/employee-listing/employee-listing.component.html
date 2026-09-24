@@ -39,80 +39,82 @@
     </div>
 
     <!-- Loading State -->
-    <div *ngIf="!(employees$ | async)" class="loading-container">
-      <itcorpo-spinner></itcorpo-spinner>
-      <p class="loading-text">Loading employees...</p>
-    </div>
+    @if (!(employees$ | async)) {
+      <div class="loading-container">
+        <itcorpo-spinner></itcorpo-spinner>
+        <p class="loading-text">Loading employees...</p>
+      </div>
+    }
 
     <!-- Employees Section -->
-    <section *ngIf="employees$ | async as employees" class="employees-section">
-      <!-- Results Summary -->
-      <div class="results-summary">
-        <h2 class="results-title">
-          <span class="results-count">{{ employees.length }}</span>
-          {{ employees.length === 1 ? 'Employee' : 'Employees' }}
-        </h2>
-      </div>
-
-      <!-- Employee List -->
-      <div class="employee-list">
-        <div
-          *ngFor="let e of employees; trackBy: trackByEmployeeId"
-          class="employee-row">
-
-          <!-- Employee Avatar -->
-          <div class="employee-avatar">
-            <div class="avatar-circle">
-              <span class="avatar-initials">{{ getInitials(e.name) }}</span>
+    @if (employees$ | async; as employees) {
+      <section class="employees-section">
+        <!-- Results Summary -->
+        <div class="results-summary">
+          <h2 class="results-title">
+            <span class="results-count">{{ employees.length }}</span>
+            {{ employees.length === 1 ? 'Employee' : 'Employees' }}
+          </h2>
+        </div>
+        <!-- Employee List -->
+        <div class="employee-list">
+          @for (e of employees; track trackByEmployeeId($index, e)) {
+            <div
+              class="employee-row">
+              <!-- Employee Avatar -->
+              <div class="employee-avatar">
+                <div class="avatar-circle">
+                  <span class="avatar-initials">{{ getInitials(e.name) }}</span>
+                </div>
+              </div>
+              <!-- Employee Info -->
+              <div class="employee-info">
+                <div class="employee-primary">
+                  <h3 class="employee-name">{{ e.name }}</h3>
+                  <span class="flag-badge">{{ e | flag }}</span>
+                </div>
+                <div class="employee-details">
+                  <span class="employee-position">{{ e.position }}</span>
+                  <span class="detail-separator">•</span>
+                  <span class="employee-department">{{ e.department }}</span>
+                  <span class="detail-separator">•</span>
+                  <span class="employee-office">
+                    <svg class="office-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    {{ e.office }}
+                  </span>
+                </div>
+              </div>
+              <!-- Employee Actions -->
+              <div class="employee-actions">
+                <a
+                  routerLink="/employees/{{ e.id }}"
+                  routerLinkActive="active"
+                  class="details-btn">
+                  <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  View Details
+                </a>
+              </div>
             </div>
-          </div>
-
-          <!-- Employee Info -->
-          <div class="employee-info">
-            <div class="employee-primary">
-              <h3 class="employee-name">{{ e.name }}</h3>
-              <span class="flag-badge">{{ e | flag }}</span>
-            </div>
-            <div class="employee-details">
-              <span class="employee-position">{{ e.position }}</span>
-              <span class="detail-separator">•</span>
-              <span class="employee-department">{{ e.department }}</span>
-              <span class="detail-separator">•</span>
-              <span class="employee-office">
-                <svg class="office-icon" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                </svg>
-                {{ e.office }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Employee Actions -->
-          <div class="employee-actions">
-            <a
-              routerLink="/employees/{{ e.id }}"
-              routerLinkActive="active"
-              class="details-btn">
-              <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          }
+        </div>
+        <!-- Empty State -->
+        @if (employees.length === 0) {
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
               </svg>
-              View Details
-            </a>
+            </div>
+            <h3 class="empty-state-title">No employees found</h3>
+            <p class="empty-state-description">Try adjusting your search criteria or check back later.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Empty State -->
-      <div *ngIf="employees.length === 0" class="empty-state">
-        <div class="empty-state-icon">
-          <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
-        </div>
-        <h3 class="empty-state-title">No employees found</h3>
-        <p class="empty-state-description">Try adjusting your search criteria or check back later.</p>
-      </div>
-    </section>
+        }
+      </section>
+    }
   </div>
 </div>

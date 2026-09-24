@@ -1,11 +1,13 @@
-<section *ngFor="let expense of expenses; let i = index">
+@for (expense of expenses; track expense; let i = $index) {
   <section>
-    {{ i + 1 }}. {{ expense.amount | currency:"EUR" }}, scheduled at: {{ expense.scheduledAt | date }}
     <section>
-      payer account: {{ expense.payerAccount }}
-    </section>
-    <section>
-      beneficiary account: {{ expense.beneficiaryAccount }}
+      {{ i + 1 }}. {{ expense.amount | currency:"EUR" }}, scheduled at: {{ expense.scheduledAt | date }}
+      <section>
+        payer account: {{ expense.payerAccount }}
+      </section>
+      <section>
+        beneficiary account: {{ expense.beneficiaryAccount }}
+      </section>
     </section>
   </section>
-</section>
+}

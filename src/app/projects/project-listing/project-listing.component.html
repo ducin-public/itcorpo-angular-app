@@ -6,19 +6,24 @@
     </button>
   </div>
 
-  <itcorpo-spinner *ngIf="!(projects$ | async)"></itcorpo-spinner>
+  @if (!(projects$ | async)) {
+    <itcorpo-spinner></itcorpo-spinner>
+  }
 
-  <div class="space-y-6" *ngIf="projects$ | async as projects">
-    <div class="text-sm text-gray-600 mb-4">Total projects: {{ projects.length }}</div>
-
-    <div *ngFor="let project of projects">
-      <itcorpo-project-card
-        [project]="project"
-        (view)="onView(project)"
-        (edit)="onEdit(project)"
-        (delete)="onDelete(project)">
-      </itcorpo-project-card>
+  @if (projects$ | async; as projects) {
+    <div class="space-y-6">
+      <div class="text-sm text-gray-600 mb-4">Total projects: {{ projects.length }}</div>
+      @for (project of projects; track project) {
+        <div>
+          <itcorpo-project-card
+            [project]="project"
+            (view)="onView(project)"
+            (edit)="onEdit(project)"
+            (delete)="onDelete(project)">
+          </itcorpo-project-card>
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>
 

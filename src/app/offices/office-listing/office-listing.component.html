@@ -4,20 +4,25 @@
     <button
       (click)="addNewOffice()"
       class="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-indigo-700"
-    >
+      >
       <i-lucide name="plus" class="h-5 w-5"></i-lucide>
       <span>Add Office</span>
     </button>
   </div>
 
-  <itcorpo-spinner *ngIf="!(offices$ | async)"></itcorpo-spinner>
+  @if (!(offices$ | async)) {
+    <itcorpo-spinner></itcorpo-spinner>
+  }
 
-  <div *ngIf="offices$ | async as offices" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <itcorpo-office-card
-      *ngFor="let office of offices"
-      [office]="office"
-      (view)="onView(office)"
-      (edit)="onEdit(office)"
-    ></itcorpo-office-card>
-  </div>
+  @if (offices$ | async; as offices) {
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      @for (office of offices; track office) {
+        <itcorpo-office-card
+          [office]="office"
+          (view)="onView(office)"
+          (edit)="onEdit(office)"
+        ></itcorpo-office-card>
+      }
+    </div>
+  }
 </div>
