@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,6 +19,7 @@ export class FadeboxComponent implements OnInit, OnDestroy {
   private intervalId: any;
 
   ngOnInit() {
+    // infinite loop - BREAK IT // setTimeout instead of setInterval
     this.intervalId = setInterval(() => {
       this.currentlyFadeOut = !this.currentlyFadeOut;
     }, 3000);
@@ -28,5 +29,15 @@ export class FadeboxComponent implements OnInit, OnDestroy {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+  }
+}
+
+@Injectable({
+  // providedIn: null
+  providedIn: 'root'
+})
+export class NotificationsService {
+  showNotification(message: string) {
+    // console.log(message);
   }
 }

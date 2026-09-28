@@ -5,16 +5,21 @@ import { apiURL } from './config';
 import { applyQueryString } from './queryString';
 
 import { Employee, Nationality } from './data-contracts';
+import { Observable } from 'rxjs';
 
 export type EmployeeCriteria = {
   nationality?: Nationality
   office_like?: string // for either cities or countries
 }
 
+export interface EmployeeSvc {
+  getAllEmployees(criteria: EmployeeCriteria): Observable<Employee[]>
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeesService {
+export class EmployeesService implements EmployeeSvc {
 
   constructor(
     private http: HttpClient
@@ -46,3 +51,6 @@ export class EmployeesService {
     return this.getPage(criteria)
   }
 }
+
+// already a singleton:
+// export const instance = new EmployeesService(http);
