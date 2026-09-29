@@ -1,4 +1,51 @@
-<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+<!-- <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+  <div class="mt-4 space-y-1 text-sm font-mono">
+    <div>
+      resource ({{ benefitsResource.status() }}):
+      @if (benefitsResource.error(); as err) {
+        <span class="text-red-600">error: {{ err.message }}</span>
+      } @else if (benefitsResource.isLoading()) {
+        loading...
+      } @else if (benefitsResource.hasValue()) {
+        {{ benefitsResource.value().length }} benefits
+      }
+      <button class="underline" (click)="benefitsResource.reload()">reload</button>
+    </div>
+
+    <div>
+      httpResource ({{ benefitsHttpResource.status() }}, HTTP {{ benefitsHttpResource.statusCode() }}):
+      @if (benefitsHttpResource.error(); as err) {
+        <span class="text-red-600">error: {{ err.message }}</span>
+      } @else if (benefitsHttpResource.isLoading()) {
+        loading...
+      } @else if (benefitsHttpResource.hasValue()) {
+        {{ benefitsHttpResource.value().length }} benefits
+      }
+      <button class="underline" (click)="benefitsHttpResource.reload()">reload</button>
+    </div>
+
+    <div>
+      rxResource ({{ benefitsRxResource.status() }}):
+      @if (benefitsRxResource.error(); as err) {
+        <span class="text-red-600">error: {{ err.message }}</span>
+      } @else if (benefitsRxResource.isLoading()) {
+        loading...
+      } @else if (benefitsRxResource.hasValue()) {
+        {{ benefitsRxResource.value().length }} benefits
+      }
+      <button class="underline" (click)="benefitsRxResource.reload()">reload</button>
+    </div>
+
+    <div>
+      toSignal:
+      @if (benefitsSignal(); as benefits) {
+        {{ benefits.length }} benefits
+      } @else {
+        loading...
+      }
+    </div>
+  </div> -->
+
   @if (!(benefits$ | async)) {
     <itcorpo-spinner class="flex justify-center mt-8"></itcorpo-spinner>
   }
@@ -33,4 +80,4 @@
       </div>
     </div>
   }
-</div>
+<!-- </div> -->

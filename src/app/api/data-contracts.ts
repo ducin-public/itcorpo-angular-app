@@ -9,9 +9,25 @@
  * ---------------------------------------------------------------
  */
 
-/** Monetary value in EUR */
-export type Money = number;
+const moneySymbol = Symbol("dupa");
+class X {
+  [moneySymbol]: number = 10;
+}
+const x = new X;
+x[moneySymbol] = 20;
+// x[Symbol("dupa")] = 20;
 
+// Symbol("dupa")
+
+/** Monetary value in EUR */
+// export type Money = number;
+// export type Money = number & { __brand: 'Money' };
+declare const __brand: unique symbol;
+export type Brand<T, TBrand extends string> = T & {
+  readonly [__brand]: TBrand;
+};
+
+export type Money = Brand<number, 'Money'>;
 /**
  * ISO 8601 date-time string
  * @format date-time

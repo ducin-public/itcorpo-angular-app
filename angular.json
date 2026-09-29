@@ -41,8 +41,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "250kb",
+                  "maximumError": "500kb"
                 }
               ],
               "outputHashing": "all",
@@ -60,10 +60,13 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production",
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "hmr": false
+          },
           "configurations": {
             "production": {
               "buildTarget": "itcorpo-app:build:production"

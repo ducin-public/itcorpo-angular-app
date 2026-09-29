@@ -1,10 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject, Optional, Injector, assertInInjectionContext, runInInjectionContext } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, Optional, Injector, assertInInjectionContext, runInInjectionContext, DestroyRef } from '@angular/core';
 
-import { finalize, Observable } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 
 import { Employee } from 'src/app/api/data-contracts';
 
 import { EmployeesService, EmployeeSvc } from 'src/app/api/employees.service';
+import { SharedModule } from '../../shared/shared.module';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { FlagPipe } from '../flag.pipe';
+import { EmployeeSalaryComponent } from '../employee-salary/employee-salary.component';
+import { NotificationsService } from 'src/app/shared/components/fadebox/fadebox.component';
 
 class DoesntExist {}
 
@@ -13,15 +19,22 @@ class DoesntExist {}
  * @param someParams
  * @param injector - pass it mainly when outside of the injection context
  */
-function injectNotifications(someParams: any, injector?: Injector){
-
+function injectNotifications(debugMessage: string, injector?: Injector){
   if (!injector) {
+    assertInInjectionContext(injectNotifications);
     injector = inject(Injector);
-    assertInInjectionContext(injectNotifications); // TODO
   }
 
   runInInjectionContext(injector, () => {
-    //...
+    console.log(`runInInjectionContext ${debugMessage}`);
+
+    // subscribeToSomething()
+    const destroyRef = inject(DestroyRef);
+    destroyRef.onDestroy(() => {
+      console.log('NOTIFICATIONS CLEANUP')
+    });
+
+    return inject(NotificationsService);
   });
 
   // inject the service
@@ -39,8 +52,11 @@ export function injectMyServices() {
     templateUrl: './employee-listing.component.html',
     styleUrls: ['./employee-listing.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
-    providers: []
+    providers: [EmployeesService],
+    imports: [
+      SharedModule, RouterLinkActive, RouterLink, AsyncPipe, FlagPipe,
+      EmployeeSalaryComponent
+    ]
 })
 export class EmployeeListingComponent implements OnInit {
 
@@ -54,6 +70,8 @@ export class EmployeeListingComponent implements OnInit {
   // private employeeSvc = inject(EmployeesService, { optional: true });
   private employeeSvc = injectMyServices().employeeSvc;
 
+  notifications = injectNotifications('PROPERTY INITIALIZER');
+
   employees$!: Observable<Employee[]> // ! -
   // ! removes null/undefined from the type - "as ..."
 
@@ -66,15 +84,24 @@ export class EmployeeListingComponent implements OnInit {
 
   injector = inject(Injector);
 
+  // DestroyRef.onDestroy(cleanupLogic)
+  ngOnDestroy(){
+    // cleanup logic
+  }
+
+
+
   clickHandler(){
     injectMyServices()
   }
 
   ngOnInit() {
     this.employees$ = this.employeeSvc.getAllEmployees().pipe(
-      finalize(() => {
-        // debugger;
+      // finalize(() => {
+      tap(() => {
         /* injectNotification().showNotification() */
+        // debugger;
+        injectNotifications('STREAM', this.injector);
       })
     )
 

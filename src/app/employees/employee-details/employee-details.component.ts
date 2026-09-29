@@ -1,8 +1,10 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Employee } from 'src/app/api/data-contracts';
-import { EmployeesModule } from '../employees.module';
+// import { EmployeeSalaryComponent } from '../employee-salary/employee-salary.component';
+import { EmployeeImageComponent } from '../employee-image';
+// import { EmployeesModule } from '../employees.module.ts___';
 
 @Component({
     selector: 'itcorpo-employee-details',
@@ -12,9 +14,11 @@ import { EmployeesModule } from '../employees.module';
     standalone: true,
     imports: [
       CommonModule,
+      // DatePipe,
       RouterModule,
-      EmployeesModule
+      // EmployeesModule
       // CurrencyPipe,
+      EmployeeImageComponent
     ]
 })
 export class EmployeeDetailsComponent {

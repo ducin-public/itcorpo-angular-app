@@ -23,22 +23,17 @@ import { RouterModule } from '@angular/router';
 // ];
 
 @NgModule({
-  declarations: [
-    EmployeeListingComponent,
-    // EmployeeDetailsComponent,
-    EmployeeDetailsPageComponent,
-    EmployeeImageComponent,
-    FlagPipe,
-  ],
-  imports: [
-    EmployeeDetailsComponent, // SCAM
-    CommonModule,
-    SharedModule,
-    RouterModule
-  ],
-  exports: [
-    EmployeeImageComponent,
-  ],
-  providers: []
+    imports: [
+        EmployeeDetailsComponent, // SCAM
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        EmployeeListingComponent,
+        // EmployeeDetailsComponent,
+        EmployeeDetailsPageComponent,
+        EmployeeImageComponent,
+        FlagPipe
+    ],
+    providers: []
 })
 export class EmployeesModule { }
