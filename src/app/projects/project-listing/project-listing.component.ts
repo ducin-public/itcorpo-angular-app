@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ProjectsService } from 'src/app/api/projects.service';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
-
+import { apiURL } from 'src/app/api/config';
 import { Project } from 'src/app/api/data-contracts';
 
 @Component({
@@ -12,17 +11,21 @@ import { Project } from 'src/app/api/data-contracts';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ProjectListingComponent implements OnInit {
-  projects$!: Observable<Project[]>
+export class ProjectListingComponent {
+  page = signal(1)
+  pageSize = signal(20)
+
+  projects = httpResource<Project[]>(() => ({
+    url: `${apiURL}/projects`,
+    params: {
+      page: String(this.page()),
+      pageSize: String(this.pageSize()),
+    },
+  }))
 
   constructor(
-    private projectSvc: ProjectsService,
     private router: Router
   ) { }
-
-  ngOnInit() {
-    this.projects$ = this.projectSvc.getAllProjects()
-  }
 
   getStatusColor(status: string): string {
     const statusColors: { [key: string]: string } = {

@@ -6,14 +6,15 @@
     </button>
   </div>
 
-  @if (!(projects$ | async)) {
+  @if (projects.isLoading()) {
     <itcorpo-spinner></itcorpo-spinner>
-  }
-
-  @if (projects$ | async; as projects) {
+  } @else if (projects.error()) {
+    <div class="text-red-600">Could not load projects.</div>
+  } @else if (projects.hasValue()) {
+    @let projectList = projects.value();
     <div class="space-y-6">
-      <div class="text-sm text-gray-600 mb-4">Total projects: {{ projects.length }}</div>
-      @for (project of projects; track project) {
+      <div class="text-sm text-gray-600 mb-4">Total projects: {{ projectList.length }}</div>
+      @for (project of projectList; track project.id) {
         <div>
           <itcorpo-project-card
             [project]="project"

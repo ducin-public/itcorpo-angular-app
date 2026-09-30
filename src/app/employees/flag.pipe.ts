@@ -11,3 +11,25 @@ export class FlagPipe implements PipeTransform {
   }
 
 }
+
+// @Pipe({
+//   name: 'async',
+//   pure: true,
+// })
+// export class FlagPipe implements PipeTransform {
+//   lastValue: any
+
+//   transform(stream: Observable<any>): string {
+//     if(!this.sub){
+//       this.sub = stream.subscribe({
+//         next(value){ this.lastValue = value; }
+//       })
+//     }
+//     return this.lastValue || undefined
+//   }
+
+    // ngOnDestroy(){...}
+
+//   sub!: Subscription
+
+// }

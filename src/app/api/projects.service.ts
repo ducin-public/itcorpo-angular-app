@@ -33,6 +33,8 @@ export class ProjectsService {
     return this.http.get<Project[]>(`${apiURL}/projects`, { params })
   }
 
+  // page = this.http.get<Project[]>(`${apiURL}/projects`)
+
   getCount() {
     return this.http.get<number>(`${apiURL}/projects/count`)
   }

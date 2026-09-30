@@ -10,13 +10,13 @@
     </button>
   </div>
 
-  @if (!(offices$ | async)) {
+  @if (officesResource.isLoading()) {
     <itcorpo-spinner></itcorpo-spinner>
-  }
-
-  @if (offices$ | async; as offices) {
+  } @else if (officesResource.error(); as err) {
+    <div class="text-red-600">Could not load offices: {{ err.message }}</div>
+  } @else if (officesResource.hasValue()) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      @for (office of offices; track office) {
+      @for (office of officesResource.value(); track office) {
         <itcorpo-office-card
           [office]="office"
           (view)="onView(office)"

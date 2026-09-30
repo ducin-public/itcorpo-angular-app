@@ -41,26 +41,34 @@
     </div>
 
     <!-- Loading State -->
-    @if (!(employees$ | async)) {
+    @if (!employees()) {
       <div class="loading-container">
         <itcorpo-spinner></itcorpo-spinner>
         <p class="loading-text">Loading employees...</p>
       </div>
     }
 
+    @if (employees(); as list) {
+      <p>Employees: {{ list.length }}</p>
+    }
+
+    @if (employees(); as list) {
+      <p>Employees: {{ list.length }}</p>
+    }
+
     <!-- Employees Section -->
-    @if (employees$ | async; as employees) {
+    @if (employees(); as list) {
       <section class="employees-section">
         <!-- Results Summary -->
         <div class="results-summary">
           <h2 class="results-title">
-            <span class="results-count">{{ employees.length }}</span>
-            {{ employees.length === 1 ? 'Employee' : 'Employees' }}
+            <span class="results-count">{{ list.length }}</span>
+            {{ list.length === 1 ? 'Employee' : 'Employees' }}
           </h2>
         </div>
         <!-- Employee List -->
         <div class="employee-list">
-          @for (e of employees; track trackByEmployeeId($index, e)) {
+          @for (e of list; track trackByEmployeeId($index, e)) {
             <div
               class="employee-row">
               <!-- Employee Avatar -->
@@ -112,7 +120,7 @@
           }
         </div>
         <!-- Empty State -->
-        @if (employees.length === 0) {
+        @if (list.length === 0) {
           <div class="empty-state">
             <div class="empty-state-icon">
               <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

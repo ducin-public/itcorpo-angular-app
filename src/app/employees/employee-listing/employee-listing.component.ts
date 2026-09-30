@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject, Optional, Injector, assertInInjectionContext, runInInjectionContext, DestroyRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, Optional, Injector, assertInInjectionContext, runInInjectionContext, DestroyRef, Signal } from '@angular/core';
 
-import { finalize, Observable, tap } from 'rxjs';
+import { finalize, Observable, share, shareReplay, tap } from 'rxjs';
 
 import { Employee } from 'src/app/api/data-contracts';
 
@@ -11,6 +11,7 @@ import { AsyncPipe } from '@angular/common';
 import { FlagPipe } from '../flag.pipe';
 import { EmployeeSalaryComponent } from '../employee-salary/employee-salary.component';
 import { NotificationsService } from 'src/app/shared/components/fadebox/fadebox.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 class DoesntExist {}
 
@@ -21,7 +22,7 @@ class DoesntExist {}
  */
 function injectNotifications(debugMessage: string, injector?: Injector){
   if (!injector) {
-    assertInInjectionContext(injectNotifications);
+    ngDevMode && assertInInjectionContext(injectNotifications);
     injector = inject(Injector);
   }
 
@@ -51,10 +52,17 @@ export function injectMyServices() {
     selector: 'itcorpo-employee-listing',
     templateUrl: './employee-listing.component.html',
     styleUrls: ['./employee-listing.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    providers: [EmployeesService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{
+      useClass: EmployeesService,
+      // useFactory: () => {
+      //   console.log('mamjo jumbo');
+      //   return EmployeesService()
+      // }
+      provide: EmployeesService
+    }],
     imports: [
-      SharedModule, RouterLinkActive, RouterLink, AsyncPipe, FlagPipe,
+      SharedModule, RouterLinkActive, RouterLink, FlagPipe,
       EmployeeSalaryComponent
     ]
 })
@@ -72,9 +80,6 @@ export class EmployeeListingComponent implements OnInit {
 
   notifications = injectNotifications('PROPERTY INITIALIZER');
 
-  employees$!: Observable<Employee[]> // ! -
-  // ! removes null/undefined from the type - "as ..."
-
   sidebarCollapsed: boolean = true
 
   cities = {
@@ -89,21 +94,30 @@ export class EmployeeListingComponent implements OnInit {
     // cleanup logic
   }
 
-
-
   clickHandler(){
     injectMyServices()
   }
 
+
+  // IMMEDIATE subscription
+  employees = toSignal(this.employeeSvc.getAllEmployees().pipe(
+    shareReplay(1)
+  )) // ! -
+
+  // employees$!: Observable<Employee[]> // ! -
+  // ! removes null/undefined from the type - "as ..."
+
   ngOnInit() {
-    this.employees$ = this.employeeSvc.getAllEmployees().pipe(
-      // finalize(() => {
-      tap(() => {
-        /* injectNotification().showNotification() */
-        // debugger;
-        injectNotifications('STREAM', this.injector);
-      })
-    )
+    // lazy COLD streams
+    // COLD vs HOT (64 different combinations)
+    // .pipe(
+    //   // finalize(() => {
+    //   tap(() => {
+    //     /* injectNotification().showNotification() */
+    //     // debugger;
+    //     injectNotifications('STREAM', this.injector);
+    //   })
+    // )
 
     // this.employees$ = this.employeeSvc.getAllEmployees({ nationality: "PL" })
     // this.employees$ = this.employeeSvc.getAllEmployees({ office_like: "Poland" })
